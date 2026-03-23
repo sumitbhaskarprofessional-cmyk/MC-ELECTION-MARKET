@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Election × Markets — Moneycontrol</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -23,7 +25,7 @@
   --dim:#3A4A5C;
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans','Helvetica Neue',sans-serif;overflow-x:hidden}
 
 /* NAV */
 nav{
@@ -35,7 +37,7 @@ nav{
   backdrop-filter:blur(12px);
 }
 .logo{display:flex;align-items:center;gap:10px}
-.logo-mc{font-family:'Bebas Neue';font-size:22px;color:#fff;letter-spacing:1px}
+.logo-mc{font-family:'Bebas Neue','Arial Black',sans-serif;font-size:22px;color:#fff;letter-spacing:1px}
 .logo-badge{background:var(--saffron);color:#fff;font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;letter-spacing:1px}
 .nav-title{font-size:13px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
 .nav-live{display:flex;align-items:center;gap:6px;font-size:12px;color:#4CAF50}
@@ -65,7 +67,7 @@ nav{
   color:var(--saffron);margin-bottom:1.2rem;
 }
 .hero-headline{
-  font-family:'Bebas Neue';font-size:clamp(52px,8vw,110px);line-height:0.9;
+  font-family:'Bebas Neue','Arial Black',sans-serif;font-size:clamp(52px,8vw,110px);line-height:0.9;
   color:#fff;margin-bottom:1.5rem;max-width:900px;
 }
 .hero-headline span{color:var(--saffron)}
@@ -89,7 +91,7 @@ nav{
   background:var(--card);border:1px solid var(--border);
   border-radius:12px;padding:1rem 1.2rem;
 }
-.hstat-val{font-family:'Bebas Neue';font-size:32px;color:#fff}
+.hstat-val{font-family:'Bebas Neue','Arial Black',sans-serif;font-size:32px;color:#fff}
 .hstat-val.up{color:#4CAF50}
 .hstat-val.down{color:var(--red)}
 .hstat-lbl{font-size:11px;color:var(--muted);letter-spacing:1px;margin-top:2px}
@@ -98,7 +100,7 @@ nav{
 .section{padding:5rem 2rem}
 .section-head{margin-bottom:3rem}
 .section-eyebrow{font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--saffron);margin-bottom:.6rem}
-.section-title{font-family:'Bebas Neue';font-size:clamp(36px,5vw,64px);color:#fff;line-height:1}
+.section-title{font-family:'Bebas Neue','Arial Black',sans-serif;font-size:clamp(36px,5vw,64px);color:#fff;line-height:1}
 .section-sub{font-size:14px;color:var(--muted);margin-top:.5rem;max-width:500px}
 
 .timeline{position:relative;max-width:1100px;margin:0 auto}
@@ -119,7 +121,7 @@ nav{
 .tcard-dot{
   width:44px;height:44px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  font-family:'Bebas Neue';font-size:13px;
+  font-family:'Bebas Neue','Arial Black',sans-serif;font-size:13px;
   border:2px solid;position:relative;z-index:2;justify-self:center;
 }
 .tcard-inner{
@@ -128,9 +130,9 @@ nav{
   transition:border-color .2s,transform .2s;cursor:default;
 }
 .tcard-inner:hover{border-color:var(--saffron);transform:translateY(-2px)}
-.tcard-year{font-family:'Bebas Neue';font-size:22px;color:#fff}
+.tcard-year{font-family:'Bebas Neue','Arial Black',sans-serif;font-size:22px;color:#fff}
 .tcard-election{font-size:13px;font-weight:500;color:var(--gold);margin-bottom:.4rem}
-.tcard-move{font-family:'DM Mono';font-size:26px;font-weight:500;margin-bottom:.3rem}
+.tcard-move{font-family:'DM Mono','Courier New',monospace;font-size:26px;font-weight:500;margin-bottom:.3rem}
 .tcard-move.up{color:#4CAF50}
 .tcard-move.down{color:var(--red)}
 .tcard-desc{font-size:12px;color:var(--muted);line-height:1.5}
@@ -156,12 +158,12 @@ nav{
   background:var(--card);border:1px solid var(--border);
   border-radius:14px;padding:1.4rem;margin-bottom:1rem;
 }
-.state-card-name{font-family:'Bebas Neue';font-size:24px;color:#fff}
+.state-card-name{font-family:'Bebas Neue','Arial Black',sans-serif;font-size:24px;color:#fff}
 .state-card-seats{font-size:12px;color:var(--muted);margin-bottom:1rem}
 .state-card-row{display:flex;align-items:center;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--border)}
 .state-card-row:last-child{border-bottom:none}
 .state-card-lbl{font-size:12px;color:var(--muted)}
-.state-card-val{font-family:'DM Mono';font-size:14px}
+.state-card-val{font-family:'DM Mono','Courier New',monospace;font-size:14px}
 .state-card-val.up{color:#4CAF50}
 .state-card-val.down{color:var(--red)}
 .map-legend{display:flex;flex-direction:column;gap:6px;margin-top:1rem}
@@ -205,12 +207,12 @@ nav{
 .msg-ai .msg-bubble{background:var(--card2);border:1px solid var(--border);color:var(--text)}
 .msg-ai .msg-bubble strong{color:var(--gold)}
 .msg-ai .msg-bubble .stat-inline{
-  display:inline-block;font-family:'DM Mono';font-size:12px;
+  display:inline-block;font-family:'DM Mono','Courier New',monospace;font-size:12px;
   background:rgba(76,175,80,0.15);color:#4CAF50;
   padding:1px 6px;border-radius:4px;margin:0 2px;
 }
 .msg-ai .msg-bubble .stat-red{
-  display:inline-block;font-family:'DM Mono';font-size:12px;
+  display:inline-block;font-family:'DM Mono','Courier New',monospace;font-size:12px;
   background:rgba(192,57,43,0.15);color:#E57373;
   padding:1px 6px;border-radius:4px;margin:0 2px;
 }
@@ -261,7 +263,7 @@ nav{
 .sector-card:hover::before{opacity:1}
 .sector-icon{font-size:28px;margin-bottom:.8rem}
 .sector-name{font-weight:600;font-size:15px;color:#fff;margin-bottom:.3rem}
-.sector-move{font-family:'DM Mono';font-size:24px;font-weight:500;margin-bottom:.4rem}
+.sector-move{font-family:'DM Mono','Courier New',monospace;font-size:24px;font-weight:500;margin-bottom:.4rem}
 .sector-desc{font-size:12px;color:var(--muted);line-height:1.5}
 .sector-bar{height:3px;border-radius:2px;margin-top:.8rem}
 
@@ -275,11 +277,11 @@ nav{
   background:var(--card);border:1px solid var(--border);
   border-radius:16px;padding:1.8rem;
 }
-.sim-title{font-family:'Bebas Neue';font-size:22px;color:#fff;margin-bottom:1.4rem}
+.sim-title{font-family:'Bebas Neue','Arial Black',sans-serif;font-size:22px;color:#fff;margin-bottom:1.4rem}
 .sim-slider-group{margin-bottom:1.4rem}
 .sim-slider-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
 .sim-slider-name{font-size:13px;color:var(--muted)}
-.sim-slider-val{font-family:'DM Mono';font-size:13px;color:#fff}
+.sim-slider-val{font-family:'DM Mono','Courier New',monospace;font-size:13px;color:#fff}
 .sim-slider{
   width:100%;-webkit-appearance:none;height:4px;border-radius:2px;
   background:var(--dim);outline:none;cursor:pointer;
@@ -293,7 +295,7 @@ nav{
   border-radius:10px;padding:1.2rem;margin-top:1.2rem;
 }
 .sim-result-label{font-size:11px;color:var(--muted);letter-spacing:1px;margin-bottom:.4rem;text-transform:uppercase}
-.sim-result-value{font-family:'Bebas Neue';font-size:42px;margin-bottom:.3rem}
+.sim-result-value{font-family:'Bebas Neue','Arial Black',sans-serif;font-size:42px;margin-bottom:.3rem}
 .sim-result-value.pos{color:#4CAF50}
 .sim-result-value.neg{color:var(--red)}
 .sim-result-desc{font-size:12px;color:var(--muted);line-height:1.5}
@@ -301,7 +303,7 @@ nav{
 .sim-row{display:flex;align-items:center;justify-content:space-between;font-size:12px;padding:.4rem 0;border-bottom:1px solid var(--border)}
 .sim-row:last-child{border:none}
 .sim-row-name{color:var(--muted)}
-.sim-row-val{font-family:'DM Mono'}
+.sim-row-val{font-family:'DM Mono','Courier New',monospace}
 .sim-row-val.p{color:#4CAF50}
 .sim-row-val.n{color:#E57373}
 
@@ -314,7 +316,7 @@ nav{
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .ticker-item{
   display:flex;align-items:center;gap:8px;padding:0 2rem;
-  font-family:'DM Mono';font-size:12px;white-space:nowrap;
+  font-family:'DM Mono','Courier New',monospace;font-size:12px;white-space:nowrap;
 }
 .ticker-name{color:var(--muted)}
 .ticker-price{color:#fff}
@@ -372,7 +374,7 @@ nav{
 }
 .react-item{margin-bottom:1.4rem}
 .react-label{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:.3rem}
-.react-value{font-family:'Bebas Neue';font-size:36px}
+.react-value{font-family:'Bebas Neue','Arial Black',sans-serif;font-size:36px}
 .react-value.pos{color:#4CAF50}
 .react-value.neg{color:var(--red)}
 .react-change{font-size:12px;color:var(--muted);margin-top:.1rem}
@@ -382,7 +384,7 @@ footer{
   padding:2rem;border-top:1px solid var(--border);
   display:flex;align-items:center;justify-content:space-between;
 }
-.footer-logo{font-family:'Bebas Neue';font-size:18px;color:#fff}
+.footer-logo{font-family:'Bebas Neue','Arial Black',sans-serif;font-size:18px;color:#fff}
 .footer-note{font-size:12px;color:var(--dim)}
 
 /* RESPONSIVE */
@@ -757,7 +759,7 @@ function buildMap(){
         document.getElementById('sname').textContent=s.id;
         document.getElementById('sseats').textContent=st.seats+' Lok Sabha Seats';
         document.getElementById('ssensex').textContent=st.sensex;
-        document.getElementById('ssensex').className='state-card-val '+(st.sensex.startsWith('+'))?'up':'down';
+        document.getElementById('ssensex').className='state-card-val '+(st.sensex.startsWith('+') ? 'up' : 'down');
         document.getElementById('sgainer').textContent=st.gainer;
         document.getElementById('sloser').textContent=st.loser;
         document.getElementById('sfii').textContent=st.fii;
@@ -984,8 +986,8 @@ function buildNight(){
   rt.innerHTML=`<tr><th>Party</th><th>Seats</th><th>vs 2019</th></tr>`+
     resultsData.map(r=>`<tr>
       <td><span class="party-dot" style="background:${r.color}"></span>${r.party}</td>
-      <td style="font-family:'DM Mono';font-weight:500">${r.seats}</td>
-      <td style="font-family:'DM Mono';color:${r.seats>r.prev?'#4CAF50':'#E57373'}">${r.seats>r.prev?'+':''}${r.seats-r.prev}</td>
+      <td style="font-family:'DM Mono','Courier New',monospace;font-weight:500">${r.seats}</td>
+      <td style="font-family:'DM Mono','Courier New',monospace;color:${r.seats>r.prev?'#4CAF50':'#E57373'}">${r.seats>r.prev?'+':''}${r.seats-r.prev}</td>
     </tr>`).join('');
   const mr=document.getElementById('market-react-wrap');
   mr.innerHTML=marketReact.map(m=>`
