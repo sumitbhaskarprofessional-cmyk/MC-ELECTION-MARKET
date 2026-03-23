@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Election × Markets — Moneycontrol</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --saffron:#FF6B00;
+  --green:#00873D;
+  --blue:#003F7F;
+  --gold:#E8A020;
+  --red:#C0392B;
+  --teal:#0D7377;
+  --bg:#05080F;
+  --card:#0C1120;
+  --card2:#111827;
+  --border:#1E2B40;
+  --text:#E8EAF0;
+  --muted:#7A8BA0;
+  --dim:#3A4A5C;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:56px;
+  background:rgba(5,8,15,0.92);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);
+}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mc{font-family:'Bebas Neue';font-size:22px;color:#fff;letter-spacing:1px}
+.logo-badge{background:var(--saffron);color:#fff;font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;letter-spacing:1px}
+.nav-title{font-size:13px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+.nav-live{display:flex;align-items:center;gap:6px;font-size:12px;color:#4CAF50}
+.live-dot{width:7px;height:7px;background:#4CAF50;border-radius:50%;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(1.3)}}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding:80px 2rem 4rem;position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 40%, rgba(255,107,0,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 60%, rgba(0,135,61,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 50% 0%, rgba(0,63,127,0.15) 0%, transparent 60%);
+  pointer-events:none;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:60px 60px;opacity:0.3;pointer-events:none;
+}
+.hero-eyebrow{
+  font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;
+  color:var(--saffron);margin-bottom:1.2rem;
+}
+.hero-headline{
+  font-family:'Bebas Neue';font-size:clamp(52px,8vw,110px);line-height:0.9;
+  color:#fff;margin-bottom:1.5rem;max-width:900px;
+}
+.hero-headline span{color:var(--saffron)}
+.hero-sub{
+  font-size:16px;line-height:1.7;color:var(--muted);
+  max-width:520px;margin-bottom:2.5rem;
+}
+.hero-pills{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:3rem}
+.pill{
+  padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;
+  border:1px solid;cursor:pointer;transition:all .2s;
+}
+.pill-saffron{border-color:var(--saffron);color:var(--saffron)}
+.pill-saffron:hover{background:var(--saffron);color:#fff}
+.pill-green{border-color:var(--green);color:var(--green)}
+.pill-green:hover{background:var(--green);color:#fff}
+.pill-blue{border-color:#4A90D9;color:#4A90D9}
+.pill-blue:hover{background:#4A90D9;color:#fff}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:800px}
+.hstat{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:1rem 1.2rem;
+}
+.hstat-val{font-family:'Bebas Neue';font-size:32px;color:#fff}
+.hstat-val.up{color:#4CAF50}
+.hstat-val.down{color:var(--red)}
+.hstat-lbl{font-size:11px;color:var(--muted);letter-spacing:1px;margin-top:2px}
+
+/* SCROLLY TIMELINE */
+.section{padding:5rem 2rem}
+.section-head{margin-bottom:3rem}
+.section-eyebrow{font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--saffron);margin-bottom:.6rem}
+.section-title{font-family:'Bebas Neue';font-size:clamp(36px,5vw,64px);color:#fff;line-height:1}
+.section-sub{font-size:14px;color:var(--muted);margin-top:.5rem;max-width:500px}
+
+.timeline{position:relative;max-width:1100px;margin:0 auto}
+.timeline-track{
+  position:absolute;left:50%;top:0;bottom:0;
+  width:2px;background:linear-gradient(to bottom,transparent,var(--border) 5%,var(--border) 95%,transparent);
+  transform:translateX(-50%);
+}
+.tcard{
+  display:grid;grid-template-columns:1fr 60px 1fr;
+  align-items:center;gap:0;margin-bottom:2.5rem;
+}
+.tcard-left{padding-right:2rem;text-align:right}
+.tcard-right{padding-left:2rem}
+.tcard.right .tcard-left{order:3;text-align:left;padding-left:2rem;padding-right:0}
+.tcard.right .tcard-dot{order:2}
+.tcard.right .tcard-right{order:1;text-align:right;padding-right:2rem;padding-left:0}
+.tcard-dot{
+  width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue';font-size:13px;
+  border:2px solid;position:relative;z-index:2;justify-self:center;
+}
+.tcard-inner{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:1.2rem 1.4rem;
+  transition:border-color .2s,transform .2s;cursor:default;
+}
+.tcard-inner:hover{border-color:var(--saffron);transform:translateY(-2px)}
+.tcard-year{font-family:'Bebas Neue';font-size:22px;color:#fff}
+.tcard-election{font-size:13px;font-weight:500;color:var(--gold);margin-bottom:.4rem}
+.tcard-move{font-family:'DM Mono';font-size:26px;font-weight:500;margin-bottom:.3rem}
+.tcard-move.up{color:#4CAF50}
+.tcard-move.down{color:var(--red)}
+.tcard-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.tcard-winner{
+  display:inline-block;font-size:10px;font-weight:600;letter-spacing:1px;
+  padding:3px 8px;border-radius:4px;margin-top:.5rem;text-transform:uppercase;
+}
+
+/* INDIA MAP SECTION */
+.map-section{
+  padding:5rem 2rem;
+  background:linear-gradient(to bottom,var(--bg),#070C16,var(--bg));
+}
+.map-layout{display:grid;grid-template-columns:1fr 380px;gap:2rem;max-width:1100px;margin:0 auto;align-items:start}
+.map-canvas-wrap{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:1.5rem;position:relative;min-height:500px;
+  display:flex;align-items:center;justify-content:center;
+}
+.map-svg-wrap{width:100%;max-width:420px}
+.map-sidebar{}
+.state-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:1.4rem;margin-bottom:1rem;
+}
+.state-card-name{font-family:'Bebas Neue';font-size:24px;color:#fff}
+.state-card-seats{font-size:12px;color:var(--muted);margin-bottom:1rem}
+.state-card-row{display:flex;align-items:center;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--border)}
+.state-card-row:last-child{border-bottom:none}
+.state-card-lbl{font-size:12px;color:var(--muted)}
+.state-card-val{font-family:'DM Mono';font-size:14px}
+.state-card-val.up{color:#4CAF50}
+.state-card-val.down{color:var(--red)}
+.map-legend{display:flex;flex-direction:column;gap:6px;margin-top:1rem}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.legend-dot{width:12px;height:12px;border-radius:2px;flex-shrink:0}
+
+/* AI CHAT SECTION */
+.ai-section{
+  padding:5rem 2rem;
+  background:linear-gradient(135deg,rgba(255,107,0,0.03) 0%,transparent 50%,rgba(0,135,61,0.03) 100%);
+}
+.ai-layout{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:1100px;margin:0 auto}
+.ai-chat{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;overflow:hidden;display:flex;flex-direction:column;height:560px;
+}
+.ai-chat-header{
+  padding:1rem 1.4rem;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:10px;
+}
+.ai-avatar{
+  width:34px;height:34px;border-radius:50%;
+  background:linear-gradient(135deg,var(--saffron),var(--gold));
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;color:#fff;
+}
+.ai-name{font-weight:500;font-size:14px}
+.ai-status{font-size:11px;color:var(--green)}
+.ai-messages{flex:1;overflow-y:auto;padding:1.2rem;display:flex;flex-direction:column;gap:1rem}
+.ai-messages::-webkit-scrollbar{width:4px}
+.ai-messages::-webkit-scrollbar-track{background:transparent}
+.ai-messages::-webkit-scrollbar-thumb{background:var(--dim);border-radius:2px}
+.msg{max-width:85%;animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.msg-user{align-self:flex-end}
+.msg-ai{align-self:flex-start}
+.msg-bubble{
+  padding:.7rem 1rem;border-radius:10px;font-size:13px;line-height:1.6;
+}
+.msg-user .msg-bubble{background:var(--saffron);color:#fff}
+.msg-ai .msg-bubble{background:var(--card2);border:1px solid var(--border);color:var(--text)}
+.msg-ai .msg-bubble strong{color:var(--gold)}
+.msg-ai .msg-bubble .stat-inline{
+  display:inline-block;font-family:'DM Mono';font-size:12px;
+  background:rgba(76,175,80,0.15);color:#4CAF50;
+  padding:1px 6px;border-radius:4px;margin:0 2px;
+}
+.msg-ai .msg-bubble .stat-red{
+  display:inline-block;font-family:'DM Mono';font-size:12px;
+  background:rgba(192,57,43,0.15);color:#E57373;
+  padding:1px 6px;border-radius:4px;margin:0 2px;
+}
+.ai-input-row{
+  display:flex;align-items:center;gap:8px;padding:1rem 1.2rem;
+  border-top:1px solid var(--border);
+}
+.ai-input{
+  flex:1;background:var(--card2);border:1px solid var(--border);
+  border-radius:8px;padding:.6rem .9rem;font-size:13px;color:var(--text);
+  font-family:'DM Sans';outline:none;
+}
+.ai-input:focus{border-color:var(--saffron)}
+.ai-input::placeholder{color:var(--dim)}
+.ai-send{
+  width:34px;height:34px;border-radius:8px;background:var(--saffron);
+  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:14px;flex-shrink:0;transition:background .2s;
+}
+.ai-send:hover{background:#E05A00}
+.ai-suggestions{display:flex;flex-direction:column;gap:.8rem}
+.ai-sug-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:1.1rem 1.3rem;cursor:pointer;
+  transition:all .2s;
+}
+.ai-sug-card:hover{border-color:var(--saffron);background:rgba(255,107,0,0.05)}
+.ai-sug-icon{font-size:18px;margin-bottom:.4rem}
+.ai-sug-title{font-weight:500;font-size:14px;color:#fff;margin-bottom:.2rem}
+.ai-sug-desc{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* SECTOR IMPACT */
+.sectors-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;
+  max-width:1100px;margin:0 auto;
+}
+.sector-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:1.4rem;cursor:pointer;
+  transition:all .2s;position:relative;overflow:hidden;
+}
+.sector-card:hover{border-color:var(--gold);transform:translateY(-3px)}
+.sector-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(to right,var(--saffron),var(--gold));
+  opacity:0;transition:opacity .2s;
+}
+.sector-card:hover::before{opacity:1}
+.sector-icon{font-size:28px;margin-bottom:.8rem}
+.sector-name{font-weight:600;font-size:15px;color:#fff;margin-bottom:.3rem}
+.sector-move{font-family:'DM Mono';font-size:24px;font-weight:500;margin-bottom:.4rem}
+.sector-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.sector-bar{height:3px;border-radius:2px;margin-top:.8rem}
+
+/* PORTFOLIO SIMULATOR */
+.sim-section{
+  padding:5rem 2rem;
+  background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(0,63,127,0.15) 0%,transparent 70%);
+}
+.sim-layout{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:1100px;margin:0 auto}
+.sim-panel{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:1.8rem;
+}
+.sim-title{font-family:'Bebas Neue';font-size:22px;color:#fff;margin-bottom:1.4rem}
+.sim-slider-group{margin-bottom:1.4rem}
+.sim-slider-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
+.sim-slider-name{font-size:13px;color:var(--muted)}
+.sim-slider-val{font-family:'DM Mono';font-size:13px;color:#fff}
+.sim-slider{
+  width:100%;-webkit-appearance:none;height:4px;border-radius:2px;
+  background:var(--dim);outline:none;cursor:pointer;
+}
+.sim-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;width:16px;height:16px;border-radius:50%;
+  background:var(--saffron);cursor:pointer;border:2px solid var(--bg);
+}
+.sim-result{
+  background:var(--card2);border:1px solid var(--border);
+  border-radius:10px;padding:1.2rem;margin-top:1.2rem;
+}
+.sim-result-label{font-size:11px;color:var(--muted);letter-spacing:1px;margin-bottom:.4rem;text-transform:uppercase}
+.sim-result-value{font-family:'Bebas Neue';font-size:42px;margin-bottom:.3rem}
+.sim-result-value.pos{color:#4CAF50}
+.sim-result-value.neg{color:var(--red)}
+.sim-result-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.sim-breakdown{margin-top:1rem;display:flex;flex-direction:column;gap:.5rem}
+.sim-row{display:flex;align-items:center;justify-content:space-between;font-size:12px;padding:.4rem 0;border-bottom:1px solid var(--border)}
+.sim-row:last-child{border:none}
+.sim-row-name{color:var(--muted)}
+.sim-row-val{font-family:'DM Mono'}
+.sim-row-val.p{color:#4CAF50}
+.sim-row-val.n{color:#E57373}
+
+/* LIVE TICKER */
+.ticker-bar{
+  background:rgba(0,0,0,0.6);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:.5rem 0;overflow:hidden;
+}
+.ticker-inner{display:flex;animation:ticker 30s linear infinite;width:max-content}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker-item{
+  display:flex;align-items:center;gap:8px;padding:0 2rem;
+  font-family:'DM Mono';font-size:12px;white-space:nowrap;
+}
+.ticker-name{color:var(--muted)}
+.ticker-price{color:#fff}
+.ticker-change.up{color:#4CAF50}
+.ticker-change.down{color:#E57373}
+.ticker-sep{color:var(--dim)}
+
+/* CHART AREA */
+.chart-wrap{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:1.5rem;
+}
+.chart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem}
+.chart-title-grp{}
+.chart-title{font-weight:500;font-size:15px;color:#fff}
+.chart-sub{font-size:12px;color:var(--muted);margin-top:2px}
+.chart-tabs{display:flex;gap:4px}
+.ctab{
+  padding:4px 10px;border-radius:6px;font-size:11px;font-weight:500;
+  cursor:pointer;border:1px solid var(--border);color:var(--muted);
+  background:transparent;transition:all .15s;
+}
+.ctab.active,.ctab:hover{background:var(--saffron);border-color:var(--saffron);color:#fff}
+
+/* ELECTION NIGHT PANEL */
+.night-panel{
+  padding:5rem 2rem;
+  background:linear-gradient(to bottom,var(--bg),#030509);
+}
+.night-grid{display:grid;grid-template-columns:2fr 1fr;gap:2rem;max-width:1100px;margin:0 auto}
+.seat-bar-wrap{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:1.8rem;
+}
+.majority-line{position:relative;margin:1.5rem 0}
+.majority-bar{display:flex;height:28px;border-radius:8px;overflow:hidden}
+.bar-bjp{background:var(--saffron);transition:width .8s ease;display:flex;align-items:center;padding-left:10px;font-size:11px;font-weight:600;color:#fff}
+.bar-inc{background:var(--green);transition:width .8s ease;display:flex;align-items:center;padding-left:10px;font-size:11px;font-weight:600;color:#fff}
+.bar-oth{background:var(--dim);flex:1;display:flex;align-items:center;padding-left:10px;font-size:11px;color:var(--muted)}
+.majority-marker{
+  position:absolute;top:-8px;bottom:-8px;
+  width:2px;background:#fff;opacity:.6;
+}
+.majority-marker::before{
+  content:'272';position:absolute;top:-20px;left:50%;transform:translateX(-50%);
+  font-size:10px;color:var(--muted);white-space:nowrap;
+}
+.results-table{width:100%;border-collapse:collapse;margin-top:1.2rem}
+.results-table th{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;padding:.5rem 0;text-align:left;border-bottom:1px solid var(--border)}
+.results-table td{padding:.6rem 0;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.04)}
+.results-table .party-dot{width:8px;height:8px;border-radius:2px;display:inline-block;margin-right:6px}
+.market-react{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:1.8rem;
+}
+.react-item{margin-bottom:1.4rem}
+.react-label{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:.3rem}
+.react-value{font-family:'Bebas Neue';font-size:36px}
+.react-value.pos{color:#4CAF50}
+.react-value.neg{color:var(--red)}
+.react-change{font-size:12px;color:var(--muted);margin-top:.1rem}
+
+/* FOOTER */
+footer{
+  padding:2rem;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.footer-logo{font-family:'Bebas Neue';font-size:18px;color:#fff}
+.footer-note{font-size:12px;color:var(--dim)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .map-layout{grid-template-columns:1fr}
+  .ai-layout{grid-template-columns:1fr}
+  .sectors-grid{grid-template-columns:1fr 1fr}
+  .sim-layout{grid-template-columns:1fr}
+  .night-grid{grid-template-columns:1fr}
+  .timeline-track{left:24px}
+  .tcard{grid-template-columns:48px 1fr;gap:0}
+  .tcard-left{display:none}
+  .tcard.right .tcard-left{display:none}
+  .tcard.right .tcard-right{order:3;text-align:left;padding-left:1rem;padding-right:0}
+  .tcard.right .tcard-dot{order:1}
+}
+
+/* ANIMATE ON SCROLL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* TOOLTIP */
+.tooltip{
+  position:absolute;background:var(--card2);border:1px solid var(--border);
+  border-radius:8px;padding:.6rem .9rem;font-size:12px;pointer-events:none;
+  z-index:50;white-space:nowrap;opacity:0;transition:opacity .15s;
+}
+.tooltip.show{opacity:1}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">
+    <span class="logo-mc">Moneycontrol</span>
+    <span class="logo-badge">ELECTION SPECIAL</span>
+  </div>
+  <span class="nav-title">Election × Markets</span>
+  <div class="nav-live"><span class="live-dot"></span>LIVE</div>
+</nav>
+
+<!-- TICKER -->
+<div style="margin-top:56px" class="ticker-bar">
+  <div class="ticker-inner" id="ticker"></div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div style="position:relative;z-index:2;max-width:1100px;margin:0 auto;width:100%">
+    <div class="hero-eyebrow">India's Most Powerful Intersection</div>
+    <h1 class="hero-headline">Every Vote<br>Every <span>Rupee</span></h1>
+    <p class="hero-sub">Explore how Indian elections move markets, reshape sectors, and transform your portfolio — powered by 25 years of data and AI analysis.</p>
+    <div class="hero-pills">
+      <a href="#timeline" class="pill pill-saffron">History Timeline</a>
+      <a href="#map" class="pill pill-green">State-wise Impact</a>
+      <a href="#ai" class="pill pill-blue">AI Analyst</a>
+      <a href="#simulator" class="pill pill-saffron">Portfolio Simulator</a>
+    </div>
+    <div class="hero-stats" id="hero-stats"></div>
+  </div>
+</section>
+
+<!-- TIMELINE SECTION -->
+<section class="section" id="timeline">
+  <div class="section-head reveal">
+    <div class="section-eyebrow">25 Years of Data</div>
+    <h2 class="section-title">Election Night → Opening Bell</h2>
+    <p class="section-sub">How Sensex reacted to every Indian general election result since 1999.</p>
+  </div>
+  <div class="timeline reveal" id="timeline-wrap">
+    <div class="timeline-track"></div>
+  </div>
+</section>
+
+<!-- INDIA MAP -->
+<section class="map-section" id="map">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">State-wise Analysis</div>
+      <h2 class="section-title">Market Impact Map</h2>
+      <p class="section-sub">Click any state to see post-election Sensex reaction and top sector moves.</p>
+    </div>
+    <div class="map-layout reveal">
+      <div class="map-canvas-wrap">
+        <svg id="india-map" viewBox="0 0 500 560" class="map-svg-wrap" style="cursor:pointer"></svg>
+        <div class="tooltip" id="map-tip"></div>
+      </div>
+      <div class="map-sidebar">
+        <div class="state-card" id="state-info">
+          <div class="state-card-name" id="sname">Maharashtra</div>
+          <div class="state-card-seats" id="sseats">48 Lok Sabha Seats</div>
+          <div class="state-card-row"><span class="state-card-lbl">Sensex Next Day</span><span class="state-card-val up" id="ssensex">+2.8%</span></div>
+          <div class="state-card-row"><span class="state-card-lbl">Top Gainer Sector</span><span class="state-card-val up" id="sgainer">BFSI +4.2%</span></div>
+          <div class="state-card-row"><span class="state-card-lbl">Top Loser Sector</span><span class="state-card-val down" id="sloser">IT -1.1%</span></div>
+          <div class="state-card-row"><span class="state-card-lbl">FII Flow (₹ Cr)</span><span class="state-card-val up" id="sfii">+6,240</span></div>
+          <div class="state-card-row"><span class="state-card-lbl">Ruling Party</span><span class="state-card-val" id="sparty" style="color:var(--gold)">BJP+MH</span></div>
+        </div>
+        <div class="map-legend">
+          <div style="font-size:11px;color:var(--muted);margin-bottom:4px;letter-spacing:1px;text-transform:uppercase">Market Reaction</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#1B5E20"></span>+3% and above</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#388E3C"></span>+1% to +3%</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#66BB6A"></span>0% to +1%</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#EF9A9A"></span>-1% to 0%</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#C62828"></span>-1% and below</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTOR IMPACT -->
+<section class="section" id="sectors">
+  <div class="section-head reveal" style="max-width:1100px;margin:0 auto 2rem">
+    <div class="section-eyebrow">Historical Pattern</div>
+    <h2 class="section-title">Sector Winners & Losers</h2>
+    <p class="section-sub">Average sector performance in 30 days post-election across Modi wins (2014, 2019, 2024).</p>
+  </div>
+  <div class="sectors-grid reveal" id="sectors-grid"></div>
+</section>
+
+<!-- AI CHAT -->
+<section class="ai-section" id="ai">
+  <div class="section-head reveal" style="max-width:1100px;margin:0 auto 2rem">
+    <div class="section-eyebrow">Powered by AI</div>
+    <h2 class="section-title">Election Analyst</h2>
+    <p class="section-sub">Ask anything about elections, markets, and your investments. Instant AI-powered answers.</p>
+  </div>
+  <div class="ai-layout reveal">
+    <div class="ai-chat" id="ai-chat">
+      <div class="ai-chat-header">
+        <div class="ai-avatar">MC</div>
+        <div>
+          <div class="ai-name">Moneycontrol AI Analyst</div>
+          <div class="ai-status">● Online — Election Mode</div>
+        </div>
+      </div>
+      <div class="ai-messages" id="chat-messages">
+        <div class="msg msg-ai">
+          <div class="msg-bubble">
+            Namaste! I'm Moneycontrol's Election-Markets AI. Ask me anything — from <strong>sector predictions</strong> to <strong>portfolio strategy</strong> around India's elections. What would you like to explore?
+          </div>
+        </div>
+      </div>
+      <div class="ai-input-row">
+        <input class="ai-input" id="chat-input" placeholder="e.g. What happens to pharma if BJP wins?" onkeydown="handleKey(event)">
+        <button class="ai-send" onclick="sendMessage()">➤</button>
+      </div>
+    </div>
+    <div class="ai-suggestions" id="ai-sug"></div>
+  </div>
+</section>
+
+<!-- PORTFOLIO SIMULATOR -->
+<section class="sim-section" id="simulator">
+  <div class="section-head reveal" style="max-width:1100px;margin:0 auto 2rem">
+    <div class="section-eyebrow">Scenario Modelling</div>
+    <h2 class="section-title">Portfolio Simulator</h2>
+    <p class="section-sub">Adjust the election outcome below — see how your ₹10L portfolio would likely react.</p>
+  </div>
+  <div class="sim-layout reveal">
+    <div class="sim-panel">
+      <div class="sim-title">Election Outcome Sliders</div>
+      <div id="sliders-wrap"></div>
+    </div>
+    <div class="sim-panel">
+      <div class="sim-title">Predicted Portfolio Impact</div>
+      <div class="sim-result">
+        <div class="sim-result-label">Estimated 30-Day Change</div>
+        <div class="sim-result-value pos" id="sim-total">+₹0</div>
+        <div class="sim-result-desc" id="sim-desc">Adjust sliders to see your outcome.</div>
+      </div>
+      <div class="sim-breakdown" id="sim-breakdown"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ELECTION NIGHT LIVE -->
+<section class="night-panel" id="night">
+  <div class="section-head reveal" style="max-width:1100px;margin:0 auto 2rem">
+    <div class="section-eyebrow">Election Night Dashboard</div>
+    <h2 class="section-title">Live Results × Market Reaction</h2>
+  </div>
+  <div class="night-grid reveal">
+    <div class="seat-bar-wrap">
+      <div style="font-size:13px;color:var(--muted);margin-bottom:.6rem">Seats Tally — Lok Sabha 2024 (543 Total)</div>
+      <div class="majority-bar" id="seat-bar">
+        <div class="bar-bjp" id="bar-bjp" style="width:51%">BJP+ &nbsp;293</div>
+        <div class="bar-inc" id="bar-inc" style="width:21%">INC+ &nbsp;112</div>
+        <div class="bar-oth">Others</div>
+      </div>
+      <div class="majority-line">
+        <div class="majority-marker" style="left:50.1%"></div>
+      </div>
+      <div style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:1.2rem">Majority mark: 272 seats</div>
+      <table class="results-table" id="results-table"></table>
+    </div>
+    <div class="market-react">
+      <div style="font-size:13px;color:var(--muted);margin-bottom:1.2rem">Market Reaction (Day After)</div>
+      <div id="market-react-wrap"></div>
+      <div class="chart-wrap" style="margin-top:1.2rem">
+        <div class="chart-header">
+          <div class="chart-title-grp">
+            <div class="chart-title">Sensex on Result Day</div>
+            <div class="chart-sub">Intraday movement</div>
+          </div>
+          <div class="chart-tabs">
+            <button class="ctab active">1D</button>
+            <button class="ctab">5D</button>
+          </div>
+        </div>
+        <div style="position:relative;height:160px"><canvas id="sensex-chart"></canvas></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Moneycontrol</div>
+  <div class="footer-note">Data: BSE, NSE, ECI. For informational purposes only. Not investment advice.</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+// ---- DATA ----
+const elections = [
+  {year:1999,name:"NDA Wins (Vajpayee)",move:+5.2,dir:"up",winner:"NDA",color:"#FF6B00",desc:"Markets surged on NDA's stable majority, infra & telecom led"},
+  {year:2004,name:"UPA Surprise Win",move:-11.8,dir:"down",winner:"UPA",color:"#00873D",desc:"Circuit breaker triggered as markets shocked by Congress win"},
+  {year:2009,name:"UPA Re-elected",move:+17.3,dir:"up",winner:"UPA",color:"#00873D",desc:"Biggest single-day Sensex rise ever — 2,110 points"},
+  {year:2014,name:"Modi Wave (BJP)",move:+6.8,dir:"up",winner:"BJP",color:"#FF6B00",desc:"Historic majority. BFSI, infra, defence rallied hard"},
+  {year:2019,name:"Modi Returns (BJP)",move:+3.7,dir:"up",winner:"BJP",color:"#FF6B00",desc:"Second term confirmed. PSU banks, defence outperformed"},
+  {year:2024,name:"NDA 3rd Term",move:-4.2,dir:"down",winner:"NDA",color:"#FF6B00",desc:"Below-expectation majority caused initial sell-off before recovery"},
+];
+const sectors = [
+  {icon:"🏗️",name:"Infrastructure",move:"+18.4%",dir:"up",desc:"Capex push, highways, railways boost. Biggest consistent winner post BJP wins.",bar:"#FF6B00"},
+  {icon:"🏦",name:"BFSI",move:"+12.1%",dir:"up",desc:"Rate stability expectations, credit growth narrative drives banking stocks.",bar:"#E8A020"},
+  {icon:"⚔️",name:"Defence",move:"+21.7%",dir:"up",desc:"Atmanirbhar Bharat push — HAL, BEL, BEML rally on every BJP win.",bar:"#4CAF50"},
+  {icon:"💊",name:"Pharma",move:"+6.3%",dir:"up",desc:"Health schemes & PLI policy benefits flow to domestic pharma.",bar:"#66BB6A"},
+  {icon:"💻",name:"IT Services",move:"-3.2%",dir:"down",desc:"Rupee strengthening on BJP wins typically hurts export-heavy IT.",bar:"#E57373"},
+  {icon:"🌾",name:"FMCG",move:"-1.8%",dir:"down",desc:"Rural spending focus shifts; urban consumption stocks see pressure.",bar:"#EF9A9A"},
+];
+const stateData = {
+  "Maharashtra":{seats:48,sensex:"+2.8%",gainer:"BFSI +4.2%",loser:"IT -1.1%",fii:"+6,240",party:"BJP+MH",col:"#388E3C"},
+  "Gujarat":{seats:26,sensex:"+3.1%",gainer:"Infra +5.8%",loser:"FMCG -0.8%",fii:"+4,100",party:"BJP",col:"#1B5E20"},
+  "Uttar Pradesh":{seats:80,sensex:"+4.2%",gainer:"Defence +6.1%",loser:"IT -0.9%",fii:"+8,700",party:"BJP",col:"#1B5E20"},
+  "Tamil Nadu":{seats:39,sensex:"-1.2%",gainer:"Pharma +2.1%",loser:"PSU -3.2%",fii:"-1,200",party:"DMK",col:"#C62828"},
+  "West Bengal":{seats:42,sensex:"-2.1%",gainer:"FMCG +1.0%",loser:"Infra -2.8%",fii:"-3,500",party:"TMC",col:"#C62828"},
+  "Rajasthan":{seats:25,sensex:"+1.9%",gainer:"Cement +3.2%",loser:"IT -0.5%",fii:"+2,100",party:"BJP",col:"#66BB6A"},
+  "Karnataka":{seats:28,sensex:"+0.8%",gainer:"IT +1.4%",loser:"Infra -1.1%",fii:"+900",party:"INC",col:"#EF9A9A"},
+  "Bihar":{seats:40,sensex:"+1.1%",gainer:"Agri +2.0%",loser:"PSU -0.4%",fii:"+400",party:"NDA",col:"#66BB6A"},
+  "Punjab":{seats:13,sensex:"-0.3%",gainer:"Agri +0.9%",loser:"Infra -0.7%",fii:"-200",party:"AAP",col:"#EF9A9A"},
+  "Andhra Pradesh":{seats:25,sensex:"+1.5%",gainer:"Power +2.8%",loser:"FMCG -0.6%",fii:"+1,800",party:"TDP+BJP",col:"#66BB6A"},
+  "Telangana":{seats:17,sensex:"+0.4%",gainer:"IT +1.0%",loser:"Infra -0.3%",fii:"+300",party:"INC",col:"#EF9A9A"},
+  "Madhya Pradesh":{seats:29,sensex:"+2.2%",gainer:"Infra +3.5%",loser:"IT -0.8%",fii:"+2,900",party:"BJP",col:"#388E3C"},
+};
+
+// Ticker data
+const tickers = [
+  {name:"SENSEX",price:"82,428",chg:"+1.24%",dir:"up"},
+  {name:"NIFTY",price:"25,012",chg:"+1.18%",dir:"up"},
+  {name:"BANKNIFTY",price:"51,840",chg:"+1.9%",dir:"up"},
+  {name:"BJP SEATS",price:"293",chg:"+2 (projected)",dir:"up"},
+  {name:"GOLD",price:"₹72,400",chg:"-0.3%",dir:"down"},
+  {name:"USD/INR",price:"83.4",chg:"-0.12%",dir:"up"},
+  {name:"CRUDE OIL",price:"$84.2",chg:"+0.5%",dir:"up"},
+  {name:"VIX",price:"12.4",chg:"-8.2%",dir:"up"},
+  {name:"FII FLOW",price:"₹+4,820Cr",chg:"Today",dir:"up"},
+  {name:"10Y YIELD",price:"7.18%",chg:"-2bps",dir:"up"},
+];
+
+// ---- TICKER ----
+function buildTicker(){
+  const t=document.getElementById('ticker');
+  const items=[...tickers,...tickers].map(x=>`
+    <span class="ticker-item">
+      <span class="ticker-name">${x.name}</span>
+      <span class="ticker-price">${x.price}</span>
+      <span class="ticker-change ${x.dir}">${x.chg}</span>
+      <span class="ticker-sep">|</span>
+    </span>`).join('');
+  t.innerHTML=items;
+}
+
+// ---- HERO STATS ----
+function buildHeroStats(){
+  const s=document.getElementById('hero-stats');
+  const items=[
+    {val:"+17.3%",lbl:"Biggest Election Day Sensex Move",cls:"up"},
+    {val:"6",lbl:"Elections Since 1999",cls:""},
+    {val:"3/6",lbl:"Elections That Moved Markets >5%",cls:""},
+    {val:"₹4.8L Cr",lbl:"FII Flows on Election Day 2009",cls:"up"},
+  ];
+  s.innerHTML=items.map(x=>`<div class="hstat"><div class="hstat-val ${x.cls}">${x.val}</div><div class="hstat-lbl">${x.lbl}</div></div>`).join('');
+}
+
+// ---- TIMELINE ----
+function buildTimeline(){
+  const w=document.getElementById('timeline-wrap');
+  elections.forEach((e,i)=>{
+    const side=i%2===0?'':'right';
+    const content=`<div class="tcard-year">${e.year}</div>
+      <div class="tcard-election">${e.name}</div>
+      <div class="tcard-move ${e.dir}">${e.dir==='up'?'+':''}${e.move}%</div>
+      <div class="tcard-desc">${e.desc}</div>
+      <span class="tcard-winner" style="background:${e.color}20;color:${e.color}">${e.winner}</span>`;
+    const dot=`<div class="tcard-dot" style="border-color:${e.color};color:${e.color}">${e.year.toString().slice(2)}</div>`;
+    w.innerHTML+=`<div class="tcard ${side}">
+      <div class="tcard-left"><div class="tcard-inner">${side===''?'':content}</div></div>
+      ${dot}
+      <div class="tcard-right"><div class="tcard-inner">${side===''?content:''}</div></div>
+    </div>`;
+  });
+}
+
+// ---- INDIA MAP (simplified SVG) ----
+const indiaStates = [
+  // Simplified India map paths
+  {id:"Uttar Pradesh",d:"M 200 180 L 260 170 L 290 200 L 270 240 L 220 250 L 185 220 Z",fill:"#1B5E20"},
+  {id:"Maharashtra",d:"M 140 280 L 200 265 L 230 290 L 210 340 L 175 360 L 130 340 L 120 310 Z",fill:"#388E3C"},
+  {id:"Madhya Pradesh",d:"M 160 240 L 225 225 L 265 245 L 250 280 L 200 295 L 150 280 Z",fill:"#388E3C"},
+  {id:"Rajasthan",d:"M 95 170 L 160 160 L 195 185 L 185 230 L 140 250 L 90 220 L 75 190 Z",fill:"#66BB6A"},
+  {id:"Gujarat",d:"M 70 240 L 115 225 L 135 250 L 145 285 L 110 300 L 80 290 L 60 265 Z",fill:"#1B5E20"},
+  {id:"Karnataka",d:"M 155 360 L 200 345 L 225 375 L 215 415 L 175 425 L 145 400 Z",fill:"#EF9A9A"},
+  {id:"Andhra Pradesh",d:"M 215 330 L 265 320 L 285 355 L 270 395 L 230 405 L 200 380 Z",fill:"#66BB6A"},
+  {id:"Telangana",d:"M 210 300 L 255 290 L 270 320 L 250 340 L 215 335 Z",fill:"#EF9A9A"},
+  {id:"Tamil Nadu",d:"M 185 415 L 225 400 L 235 445 L 225 490 L 190 500 L 168 470 L 170 435 Z",fill:"#C62828"},
+  {id:"West Bengal",d:"M 295 200 L 340 190 L 355 225 L 340 265 L 295 270 L 280 240 Z",fill:"#C62828"},
+  {id:"Bihar",d:"M 270 195 L 305 185 L 325 205 L 315 235 L 280 245 L 260 225 Z",fill:"#66BB6A"},
+  {id:"Punjab",d:"M 105 140 L 145 135 L 155 160 L 135 175 L 100 170 Z",fill:"#EF9A9A"},
+  // Smaller states (simplified)
+  {id:"Haryana",d:"M 150 155 L 185 150 L 195 175 L 165 185 L 148 165 Z",fill:"#66BB6A"},
+  {id:"Himachal Pradesh",d:"M 150 115 L 190 105 L 205 135 L 175 148 L 148 138 Z",fill:"#388E3C"},
+  {id:"Uttarakhand",d:"M 200 150 L 235 140 L 250 165 L 230 185 L 200 178 Z",fill:"#388E3C"},
+  {id:"Jharkhand",d:"M 285 245 L 320 238 L 335 265 L 315 290 L 280 285 Z",fill:"#66BB6A"},
+  {id:"Odisha",d:"M 290 270 L 330 262 L 345 300 L 330 340 L 290 350 L 272 318 Z",fill:"#66BB6A"},
+  {id:"Chhattisgarh",d:"M 240 270 L 280 262 L 295 295 L 275 335 L 240 340 L 220 310 Z",fill:"#66BB6A"},
+  {id:"Kerala",d:"M 162 420 L 185 415 L 188 460 L 175 500 L 160 490 L 155 455 Z",fill:"#EF9A9A"},
+  {id:"Assam",d:"M 370 185 L 415 178 L 420 200 L 400 215 L 360 210 Z",fill:"#388E3C"},
+  {id:"J&K",d:"M 120 80 L 170 68 L 185 100 L 160 118 L 118 108 Z",fill:"#66BB6A"},
+];
+
+function buildMap(){
+  const svg=document.getElementById('india-map');
+  const tip=document.getElementById('map-tip');
+  indiaStates.forEach(s=>{
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',s.d);
+    path.setAttribute('fill',s.fill);
+    path.setAttribute('stroke','#05080F');
+    path.setAttribute('stroke-width','1.5');
+    path.setAttribute('opacity','0.85');
+    path.style.cursor='pointer';
+    path.style.transition='opacity .15s, transform .15s';
+    path.addEventListener('mouseenter',function(e){
+      this.setAttribute('opacity','1');
+      const st=stateData[s.id];
+      if(st){
+        tip.innerHTML=`<strong>${s.id}</strong><br>Sensex: ${st.sensex}<br>FII: ₹${st.fii}Cr`;
+        tip.classList.add('show');
+      }
+    });
+    path.addEventListener('mouseleave',function(){
+      this.setAttribute('opacity','0.85');
+      tip.classList.remove('show');
+    });
+    path.addEventListener('click',function(){
+      const st=stateData[s.id];
+      if(st){
+        document.getElementById('sname').textContent=s.id;
+        document.getElementById('sseats').textContent=st.seats+' Lok Sabha Seats';
+        document.getElementById('ssensex').textContent=st.sensex;
+        document.getElementById('ssensex').className='state-card-val '+(st.sensex.startsWith('+'))?'up':'down';
+        document.getElementById('sgainer').textContent=st.gainer;
+        document.getElementById('sloser').textContent=st.loser;
+        document.getElementById('sfii').textContent=st.fii;
+        document.getElementById('sparty').textContent=st.party;
+      }
+    });
+    // Add state label for larger states
+    svg.appendChild(path);
+    if(["Maharashtra","Uttar Pradesh","Rajasthan","Gujarat","Karnataka","West Bengal","Tamil Nadu"].includes(s.id)){
+      const bbox=s.d.match(/M\s*([\d.]+)\s+([\d.]+)/);
+      if(bbox){
+        const txt=document.createElementNS('http://www.w3.org/2000/svg','text');
+        txt.setAttribute('font-size','7');
+        txt.setAttribute('fill','rgba(255,255,255,0.7)');
+        txt.setAttribute('text-anchor','middle');
+        txt.setAttribute('pointer-events','none');
+        txt.setAttribute('font-family','DM Sans');
+        // Compute approximate center
+        const nums=s.d.match(/[\d.]+\s+[\d.]+/g).map(p=>p.split(' ').map(Number));
+        const cx=(Math.max(...nums.map(p=>p[0]))+Math.min(...nums.map(p=>p[0])))/2;
+        const cy=(Math.max(...nums.map(p=>p[1]))+Math.min(...nums.map(p=>p[1])))/2;
+        txt.setAttribute('x',cx); txt.setAttribute('y',cy+3);
+        txt.textContent=s.id.length>10?s.id.split(' ')[0]:s.id;
+        svg.appendChild(txt);
+      }
+    }
+  });
+  // Sea / background
+  const bg=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  bg.setAttribute('width','500');bg.setAttribute('height','560');
+  bg.setAttribute('fill','#0C1120');bg.setAttribute('rx','8');
+  svg.insertBefore(bg,svg.firstChild);
+  // Title
+  const title=document.createElementNS('http://www.w3.org/2000/svg','text');
+  title.setAttribute('x','250');title.setAttribute('y','535');
+  title.setAttribute('text-anchor','middle');title.setAttribute('font-size','10');
+  title.setAttribute('fill','rgba(122,139,160,0.6)');title.setAttribute('font-family','DM Sans');
+  title.textContent='Illustrative — click states to explore data';
+  svg.appendChild(title);
+}
+
+// ---- SECTORS ----
+function buildSectors(){
+  const g=document.getElementById('sectors-grid');
+  g.innerHTML=sectors.map(s=>`
+    <div class="sector-card" onclick="sectorClick('${s.name}')">
+      <div class="sector-icon">${s.icon}</div>
+      <div class="sector-name">${s.name}</div>
+      <div class="sector-move" style="color:${s.dir==='up'?'#4CAF50':'#E57373'}">${s.move}</div>
+      <div class="sector-desc">${s.desc}</div>
+      <div class="sector-bar" style="background:${s.bar};opacity:0.7"></div>
+    </div>`).join('');
+}
+function sectorClick(n){
+  addMsg('user',`Tell me about ${n} sector during elections`);
+  const s=sectors.find(x=>x.name===n);
+  setTimeout(()=>{
+    addMsg('ai',`<strong>${n} Sector Analysis 🔍</strong><br><br>${s.desc}<br><br>Historical avg across BJP wins: <span class="stat-inline">${s.move}</span><br><br>Key drivers: capex announcements, policy continuity, sectoral budget allocation. ${n==='Defence'?'HAL, BEL, BHEL are your top watchlist names.':n==='BFSI'?'SBI, HDFC Bank typically lead the rally.':'Watch index constituents for entry points.'}`);
+  },800);
+  document.getElementById('ai').scrollIntoView({behavior:'smooth'});
+}
+
+// ---- AI CHAT ----
+const suggestions=[
+  {icon:"📊",title:"What happens to pharma if BJP wins?",desc:"Historical sector analysis"},
+  {icon:"🏦",title:"Which sectors do best under Congress?",desc:"Party-wise sector patterns"},
+  {icon:"💼",title:"How should I rebalance before results?",desc:"Portfolio strategy guide"},
+  {icon:"📈",title:"FII flows on election day — what to expect?",desc:"Institutional money patterns"},
+];
+function buildSuggestions(){
+  const c=document.getElementById('ai-sug');
+  c.innerHTML=suggestions.map(s=>`
+    <div class="ai-sug-card" onclick="askSuggestion('${s.title}')">
+      <div class="ai-sug-icon">${s.icon}</div>
+      <div class="ai-sug-title">${s.title}</div>
+      <div class="ai-sug-desc">${s.desc}</div>
+    </div>`).join('');
+}
+function askSuggestion(q){
+  document.getElementById('chat-input').value=q;
+  sendMessage();
+}
+
+const aiResponses = {
+  pharma: `<strong>Pharma Sector — BJP Win Scenario 💊</strong><br><br>Historically, pharma sees <span class="stat-inline">+6.3% avg</span> in 30 days post BJP win, driven by:<br><br>• PLI scheme continuity for domestic mfg<br>• Ayushman Bharat expansion expectations<br>• Weaker rupee helps export earnings<br><br>Top picks to watch: <strong>Sun Pharma, Dr. Reddy's, Cipla</strong>. Domestic formulation players outperform exporters when rupee strengthens.`,
+  congress: `<strong>Sector Trends Under INC Wins 🌿</strong><br><br>Congress victories have historically benefited:<br><br>• <span class="stat-inline">FMCG +8.2%</span> — rural welfare schemes boost consumption<br>• <span class="stat-inline">Agri +11.4%</span> — farm loan waivers, MSP hikes<br>• <span class="stat-inline">IT +4.1%</span> — services exports supported<br><br>Infrastructure & Defence typically underperform vs BJP wins. MGNREGA-linked stocks, fertiliser companies historically outperform.`,
+  rebalance: `<strong>Pre-Election Portfolio Strategy ⚖️</strong><br><br>Based on historical patterns, consider:<br><br>1. <strong>Reduce</strong> high-beta infra/defence names 2 weeks before results (election premium priced in)<br>2. <strong>Hold</strong> 10-15% in gold as uncertainty hedge — <span class="stat-inline">Gold +3-5% on surprise results</span><br>3. <strong>Increase</strong> large-cap defensive (FMCG, pharma) weight<br>4. <strong>Keep cash</strong> for post-result dip buying window (typically 48-72hrs)<br><br>Volatility is highest on counting day. VIX spikes <span class="stat-red">20-40%</span> before results.`,
+  fii: `<strong>FII Flow Patterns on Election Day 🌏</strong><br><br>Institutional money is decisive:<br><br>• 2009: <span class="stat-inline">₹4.8L Cr inflow</span> — biggest ever on result day<br>• 2014: <span class="stat-inline">₹18,240 Cr inflow</span> — Modi wave drew global capital<br>• 2019: <span class="stat-inline">₹9,800 Cr inflow</span> — continuity premium<br>• 2004: <span class="stat-red">₹-12,000 Cr outflow</span> — shock Congress win<br><br>FIIs love political certainty. Clear majority = big inflows. Hung parliament = outflows. Monitor FII data from 8am on result day.`,
+};
+function getMsgType(msg){
+  const m=msg.toLowerCase();
+  if(m.includes('pharma')||m.includes('bjp wins')) return 'pharma';
+  if(m.includes('congress')||m.includes('inc')||m.includes('under congress')) return 'congress';
+  if(m.includes('rebalance')||m.includes('portfolio')||m.includes('strategy')) return 'rebalance';
+  if(m.includes('fii')||m.includes('institutional')||m.includes('flow')) return 'fii';
+  return null;
+}
+function addMsg(role,html){
+  const c=document.getElementById('chat-messages');
+  const d=document.createElement('div');
+  d.className=`msg msg-${role}`;
+  d.innerHTML=`<div class="msg-bubble">${html}</div>`;
+  c.appendChild(d);
+  c.scrollTop=c.scrollHeight;
+}
+let isTyping=false;
+async function sendMessage(){
+  const inp=document.getElementById('chat-input');
+  const msg=inp.value.trim();
+  if(!msg||isTyping) return;
+  addMsg('user',msg);
+  inp.value='';
+  isTyping=true;
+  // typing indicator
+  addMsg('ai','<span style="color:var(--muted);font-size:12px">Analysing election data...</span>');
+  const msgs=document.getElementById('chat-messages');
+  const typingEl=msgs.lastChild;
+  setTimeout(async()=>{
+    typingEl.remove();
+    const known=getMsgType(msg);
+    if(known){
+      addMsg('ai',aiResponses[known]);
+      isTyping=false;
+      return;
+    }
+    // Call Claude API
+    try{
+      const r=await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          model:'claude-sonnet-4-20250514',
+          max_tokens:1000,
+          system:`You are Moneycontrol's Election-Markets AI Analyst. You answer questions about Indian elections and their impact on markets, sectors, and portfolios. Keep answers concise, data-driven, and formatted with HTML (use <strong>, <br>, and span classes "stat-inline" for green numbers and "stat-red" for red numbers). Focus on NIFTY, SENSEX, sectors. Always ground answers in historical Indian election data.`,
+          messages:[{role:'user',content:msg}]
+        })
+      });
+      const d=await r.json();
+      const text=d.content?.filter(x=>x.type==='text').map(x=>x.text).join('');
+      addMsg('ai',text||"I couldn't find specific data for that query. Try asking about specific sectors or election outcomes!");
+    }catch(e){
+      addMsg('ai',"I'm currently in demo mode. Ask about pharma, congress wins, portfolio rebalancing, or FII flows for live AI responses!");
+    }
+    isTyping=false;
+  },1200);
+}
+function handleKey(e){if(e.key==='Enter') sendMessage();}
+
+// ---- SIMULATOR ----
+const simSliders=[
+  {id:"bjp",name:"BJP+ Seat Share",min:30,max:60,val:51,unit:"%"},
+  {id:"fii",name:"FII Inflow (₹000 Cr)",min:-5,max:20,val:8,unit:"K Cr"},
+  {id:"stability",name:"Political Stability Index",min:0,max:100,val:70,unit:""},
+  {id:"reform",name:"Reform Expectation Score",min:0,max:100,val:65,unit:""},
+];
+const portfolio=[
+  {name:"Infrastructure",alloc:25,sensitivity:0.8},
+  {name:"BFSI",alloc:30,sensitivity:0.5},
+  {name:"IT",alloc:20,sensitivity:-0.3},
+  {name:"Pharma",alloc:15,sensitivity:0.3},
+  {name:"Defence",alloc:10,sensitivity:0.9},
+];
+function buildSimulator(){
+  const sw=document.getElementById('sliders-wrap');
+  sw.innerHTML=simSliders.map(s=>`
+    <div class="sim-slider-group">
+      <div class="sim-slider-label">
+        <span class="sim-slider-name">${s.name}</span>
+        <span class="sim-slider-val" id="sv-${s.id}">${s.val}${s.unit}</span>
+      </div>
+      <input class="sim-slider" type="range" min="${s.min}" max="${s.max}" value="${s.val}" oninput="updateSim()" id="sl-${s.id}">
+    </div>`).join('');
+  updateSim();
+}
+function updateSim(){
+  const bjp=+document.getElementById('sl-bjp').value;
+  const fii=+document.getElementById('sl-fii').value;
+  const stability=+document.getElementById('sl-stability').value;
+  const reform=+document.getElementById('sl-reform').value;
+  simSliders.forEach(s=>{
+    const el=document.getElementById(`sv-${s.id}`);
+    const val=document.getElementById(`sl-${s.id}`).value;
+    if(el) el.textContent=val+s.unit;
+  });
+  // Compute score
+  const score=((bjp-40)/20)*40 + (fii/20)*30 + (stability/100)*15 + (reform/100)*15;
+  const totalBase=1000000;
+  const change=Math.round(totalBase*(score/100)*0.12);
+  const el=document.getElementById('sim-total');
+  el.textContent=(change>=0?'+':'')+`₹${Math.abs(change).toLocaleString('en-IN')}`;
+  el.className='sim-result-value '+(change>=0?'pos':'neg');
+  document.getElementById('sim-desc').textContent=
+    change>50000?`Strong BJP majority + high FII inflows = bullish scenario. Infrastructure & Defence lead.`:
+    change>0?`Moderate positive scenario. BFSI and pharma likely outperform. Stay diversified.`:
+    change>-50000?`Weak political mandate. Consider reducing beta, adding gold as hedge.`:
+    `Hung parliament scenario. High volatility expected. Capital preservation mode.`;
+  const bd=document.getElementById('sim-breakdown');
+  bd.innerHTML=portfolio.map(p=>{
+    const sectorScore=(score/100)*p.sensitivity*1.5;
+    const val=Math.round(totalBase*(p.alloc/100)*sectorScore*0.12);
+    return `<div class="sim-row">
+      <span class="sim-row-name">${p.name} (${p.alloc}%)</span>
+      <span class="sim-row-val ${val>=0?'p':'n'}">${val>=0?'+':''} ₹${Math.abs(val).toLocaleString('en-IN')}</span>
+    </div>`;
+  }).join('');
+}
+
+// ---- ELECTION NIGHT ----
+const resultsData=[
+  {party:"BJP",seats:293,color:"#FF6B00",prev:303},
+  {party:"INC",seats:112,color:"#00873D",prev:52},
+  {party:"SP",seats:37,color:"#E8A020",prev:5},
+  {party:"TMC",seats:29,color:"#1A237E",prev:22},
+  {party:"Others",seats:72,color:"#3A4A5C",prev:161},
+];
+const marketReact=[
+  {label:"SENSEX (Next Open)",val:"-2,689",change:"-3.2%",dir:"neg"},
+  {label:"NIFTY (Next Open)",val:"-857",change:"-3.4%",dir:"neg"},
+  {label:"FII Flow (Day 1)",val:"-₹14,700 Cr",change:"Outflow",dir:"neg"},
+  {label:"Recovery (5 Days)",val:"+₹28,400 Cr",change:"Inflow",dir:"pos"},
+];
+function buildNight(){
+  const rt=document.getElementById('results-table');
+  rt.innerHTML=`<tr><th>Party</th><th>Seats</th><th>vs 2019</th></tr>`+
+    resultsData.map(r=>`<tr>
+      <td><span class="party-dot" style="background:${r.color}"></span>${r.party}</td>
+      <td style="font-family:'DM Mono';font-weight:500">${r.seats}</td>
+      <td style="font-family:'DM Mono';color:${r.seats>r.prev?'#4CAF50':'#E57373'}">${r.seats>r.prev?'+':''}${r.seats-r.prev}</td>
+    </tr>`).join('');
+  const mr=document.getElementById('market-react-wrap');
+  mr.innerHTML=marketReact.map(m=>`
+    <div class="react-item">
+      <div class="react-label">${m.label}</div>
+      <div class="react-value ${m.dir}">${m.val}</div>
+      <div class="react-change">${m.change}</div>
+    </div>`).slice(0,2).join('');
+}
+
+// ---- SENSEX CHART ----
+function buildSensexChart(){
+  const labels=[];const data=[];
+  let val=72840;
+  // Opening crash then recovery pattern (2024 election day)
+  const pattern=[72840,71200,70190,69650,72050,73200,73840,74120,73890,74280,73980,74560,74820,75100,75240,75180,74960,75380,75640,76200];
+  for(let i=0;i<pattern.length;i++){
+    const h=9+Math.floor(i*0.35);const m=(i*18)%60;
+    labels.push(`${h}:${m.toString().padStart(2,'0')}`);
+    data.push(pattern[i]);
+  }
+  new Chart(document.getElementById('sensex-chart'),{
+    type:'line',
+    data:{labels,datasets:[{
+      label:'SENSEX',data:pattern,
+      borderColor:'#FF6B00',backgroundColor:'rgba(255,107,0,0.06)',
+      borderWidth:2,pointRadius:0,fill:true,tension:0.4
+    }]},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{
+        callbacks:{label:ctx=>`₹${ctx.parsed.y.toLocaleString('en-IN')}`}
+      }},
+      scales:{
+        x:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#7A8BA0',font:{size:10},maxTicksLimit:6}},
+        y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#7A8BA0',font:{size:10},callback:v=>(v/1000).toFixed(0)+'K'}}
+      }
+    }
+  });
+}
+
+// ---- SCROLL REVEAL ----
+function initReveal(){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible')});
+  },{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+
+// ---- INIT ----
+buildTicker();
+buildHeroStats();
+buildTimeline();
+buildMap();
+buildSectors();
+buildSuggestions();
+buildSimulator();
+buildNight();
+setTimeout(buildSensexChart,100);
+initReveal();
+</script>
+</body>
+</html>
